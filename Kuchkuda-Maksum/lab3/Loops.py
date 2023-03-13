@@ -17,4 +17,3 @@ for number in numbers:
         continue
 
     print(number)
-    
