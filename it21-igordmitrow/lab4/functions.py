@@ -1,7 +1,7 @@
 def list_benefits():
     return "More organized code", "More readable code", "Easier code reuse", "Allowing programmers to share and connect code together"
 
-def build_sentence(benefit):
+def build_sentence(benefit: str) -> str:
     return "%s is a benefit of functions!" % benefit
 
 
