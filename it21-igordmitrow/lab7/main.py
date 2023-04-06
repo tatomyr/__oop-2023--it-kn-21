@@ -14,7 +14,7 @@ class Dog:
         return f"{self.name} is {self.age} years old, {self.breed} breed, owner is {self.owner}"
     
     def bark(self):
-        print(self.woof)
+        print(self.name + ": " + self.woof)
     
     def get_older(self):
         self.age += 1
@@ -25,23 +25,33 @@ class Dog:
     def change_owner(self, new_owner):
         self.owner = new_owner
 
-dog1 = Dog("Rex", 3, "Labrador", "Igor")
-dog2 = Dog("Bob", 5, "Pitbull", "Igor")
-dog3 = Dog("Jack", 2, "Poodle", "Igor")
+    @classmethod
+    def from_dict(cls, dict):
+        name, age, breed, owner = dict.values()
+        return cls(name, age, breed, owner)
+    
+    @classmethod
+    def change_woof(cls, new_woof):
+        cls.woof = new_woof
+    
+    @staticmethod
+    def is_dog_adult(age):
+        return age >= 3
 
-# Боб гавкає
-dog2.bark()
-
-# Виводимо вік третьої собаки та збільшуємо його на 1 рік
-print(dog3.get_age())
-dog3.get_older()
-print(dog3.get_age())
-
-# Змінюємо власника першої собаки
-dog1.change_owner("Igor Dmitrow")
+dog1 = Dog.from_dict({"name": "Rex", "age": 3, "breed": "Labrador", "owner": "ID"})
 
 # Виводимо інформацію про першу собаку
 print(dog1)
+
+
+dog1.bark()
+
+Dog.change_woof("Gav!")
+
+dog1.bark()
+
+
+print(Dog.is_dog_adult(5))
 
 # Виводимо кількість створених собак
 print("Кількість ініціалізованих собак: " + str(Dog.amount))
