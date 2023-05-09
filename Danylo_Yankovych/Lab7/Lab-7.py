@@ -1,53 +1,49 @@
-class Dog:
+class Book:
     amount = 0
-    woof = "Woof!"
-
-    def __init__(self, name, age, breed, owner):
-        self.name = name
-        self.age = age
-        self.breed = breed
-        self.owner = owner
-        Dog.amount += 1
+    genre = "Unknown"
+    default_author = "Unknown"
+    def __init__(self, title, author, year, pages, publisher):
+        self.title = title
+        self.author = author
+        self.year = year
+        self.pages = pages
+        self.publisher = publisher
+        Book.amount += 1
 
     def __str__(self):
-        return f"{self.name} is {self.age} years old, {self.breed} breed, owner is {self.owner}"
+        return f"{self.title} by {self.author}, published by {self.publisher} in {self.year}, {self.pages} pages"
 
-    def bark(self):
-        print(self.name + ": " + self.woof)
+    def get_published_year(self):
+        return self.year
 
-    def get_older(self):
-        self.age += 1
+    def set_author(self, new_author):
+        self.author = new_author
 
-    def get_age(self):
-        return self.age
-
-    def change_owner(self, new_owner):
-        self.owner = new_owner
+    def set_publisher(self, new_publisher):
+        self.publisher = new_publisher
 
     @classmethod
     def from_dict(cls, dict):
-        name, age, breed, owner = dict.values()
-        return cls(name, age, breed, owner)
+        title, author, year, pages, publisher = dict.values()
+        return cls(title, author, year, pages, publisher)
 
     @classmethod
-    def change_woof(cls, new_woof):
-        cls.woof = new_woof
+    def set_genre(cls, new_genre):
+        cls.genre = new_genre
 
     @staticmethod
-    def is_dog_adult(age):
-        return age >= 3
+    def is_long_book(pages):
+        return pages >= 500
 
+book1 = Book.from_dict({"title": "Harry Potter and the Philosopher's Stone", "author": "J.K. Rowling", "year": 1997, "pages": 223, "publisher": "Bloomsbury Publishing"})
 
-dog1 = Dog.from_dict({"name": "Boxer", "age": 2, "breed": "Bulldog", "owner": "Danylo"})
+print(book1)
 
-print(dog1)
+print(Book.is_long_book(700))
 
-dog1.bark()
+Book.set_genre("Fantasy")
 
-Dog.change_woof("Aw-aw!")
+book1.set_author("Joanne Rowling")
+book1.set_publisher("Scholastic")
 
-dog1.bark()
-
-print(Dog.is_dog_adult(5))
-
-print("Кількість ініціалізованих собак: " + str(Dog.amount))
+print("Number of initialized books: " + str(Book.amount))

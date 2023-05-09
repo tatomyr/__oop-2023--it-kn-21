@@ -1,48 +1,31 @@
-class Dog:
-    def __init__(self, name, age, breed, owner):
-        self.name = name
-        self.age = age
-        self.breed = breed
-        self.owner = owner
+class Book:
+	def init(self, title, author, year_published, publisher):
+	self.title = title
+	self.author = author
+	self.year_published = year_published
+	self.publisher = publisher
+	def __repr__(self):
+		return f"Book({self.title}, {self.author}, {self.year_published}, {self.publisher})"
 
-    def bark(self):
-        print(self.name + ": Woof!")
+	def __str__(self):
+		return f"{self.title} by {self.author}, published by {self.publisher} in {self.year_published}"
 
-    def get_older(self):
-        self.age += 1
+	def __add__(self, other):
+		return self.year_published + other.year_published
 
-    def get_age(self):
-        return self.age
+	def __sub__(self, other):
+		return self.year_published - other.year_published
 
-    def change_owner(self, new_owner):
-        self.owner = new_owner
+	def __len__(self):
+		return len(self.title)
 
-    def __repr__(self):
-        return f"Dog({self.name}, {self.age}, {self.breed}, {self.owner})"
+book1 = Book("The Great Gatsby", "F. Scott Fitzgerald", 1925, "Charles Scribner's Sons")
+book2 = Book("To Kill a Mockingbird", "Harper Lee", 1960, "J. B. Lippincott & Co.")
 
-    def __str__(self):
-        return f"{self.name} is {self.age} years old, {self.breed} breed, owner is {self.owner}"
+print(repr(book1))
+print(book1)
 
-    def __add__(self, other):
-        return self.age + other.age
+print(book1 + book2)
+print(book2 - book1)
 
-    def __sub__(self, other):
-        return self.age - other.age
-
-    def __len__(self):
-        return len(self.name)
-
-
-dog = Dog("Boxer", 3, "Bulldog", "Danylo")
-dog1 = Dog("Snowy", 5, "Husky", "Danylo")
-
-# Виводимо інформацію про собаку
-print(repr(dog))
-print(dog)
-
-# Додаємо вік собак і віднімаємо
-print(dog + dog1)
-print(dog1 - dog)
-
-# Виводимо довжину імені собаки
-print(len(dog))
+print(len(book1))

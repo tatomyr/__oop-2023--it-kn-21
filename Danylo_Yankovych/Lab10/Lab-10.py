@@ -1,43 +1,43 @@
-class Dog:
-    def __init__(self, name, age):
-        self._name = None
-        self._age = None
-        self.name = name
-        self.age = age
+class Book:
+    def __init__(self, title, year):
+        self._title = None
+        self._year = None
+        self.title = title
+        self.year = year
 
     def speak(self):
-        print("Woof!")
+        print("I am a book!")
 
     @property
-    def age(self):
-        return self._age
+    def year(self):
+        return self._year
     
-    @age.setter
-    def age(self, value):
+    @year.setter
+    def year(self, value):
         if value < 0:
-            raise ValueError("Age cannot be negative")
-        self._age = value
+            raise ValueError("Year cannot be negative")
+        self._year = value
     
     @property
-    def name(self):
-        return self._name
+    def title(self):
+        return self._title
     
-    @name.setter
-    def name(self, value):
+    @title.setter
+    def title(self, value):
         if not value:
-            raise ValueError("Name cannot be empty")
-        self._name = value
+            raise ValueError("Title cannot be empty")
+        self._title = value
 
-    @name.deleter
-    def name(self):
-        del self._name
-        print("Name deleted")
+    @title.deleter
+    def title(self):
+        del self._title
+        print("Title deleted")
 
-dog = Dog("Boxer", 5)
-dog.speak()
-print(dog.age)
-dog.age = 6
-print(dog.age)
-dog.name = "Sparky"
-print(dog.name)
-del dog.name
+book = Book("To Kill a Mockingbird", 1960)
+book.speak()
+print(book.year)
+book.year = 1961
+print(book.year)
+book.title = "Pride and Prejudice"
+print(book.title)
+del book.title

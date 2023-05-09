@@ -1,63 +1,63 @@
-class Dog(Animal):
-    woof = "Woof!"
+class Car:
+    def __init__(self, make, model, year, color):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.color = color
     
-    def __init__(self, name, age, breed, owner):
-        super().__init__(name, age, breed, owner)
+    def honk(self):
+        print("Beep beep!")
     
-    def bark(self):
-        print(self.name + ": " + self.woof)
+    def __str__(self):
+        return f"{self.color} {self.year} {self.make} {self.model}"
 
-
-class Cat(Animal):
-    meow = "Meow!"
+class SportsCar(Car):
+    def __init__(self, make, model, year, color, top_speed):
+        super().__init__(make, model, year, color)
+        self.top_speed = top_speed
     
-    def __init__(self, name, age, breed, owner, hamster=None):
-        super().__init__(name, age, breed, owner)
-        self.hamster = hamster
+    def accelerate(self):
+        print(f"The {self.color} {self.make} {self.model} is accelerating to {self.top_speed} mph!")
+        
+class ElectricCar(Car):
+    def __init__(self, make, model, year, range, efficiency):
+        super().__init__(make, model, year)
+        self.range = range
+        self.efficiency = efficiency
     
-    def meow(self):
-        print(self.name + ": " + self.meow)
+    def charge(self):
+        print("Charging the electric car...")
     
-    def eat_hamster(self):
-        if self.hamster is not None:
-            if self.hamster.willSurvive():
-                print(self.name + " tried to eat " + self.hamster.name + " but it survived")
-                return
-            print(self.name + " ate " + self.hamster.name)
-            del self.hamster
+    def drive(self, distance):
+        energy = distance / self.efficiency
+        if energy <= self.range:
+            print(f"Driving the {self.make} {self.model} for {distance} km")
+            self.range -= energy
         else:
-            print(self.name + " has no hamster to eat")
-
-
-class Hamster(Animal):
-    squeak = "Squeak!"
+            print(f"Oops, not enough energy to drive {distance} km")
     
-    def __init__(self, name, age, breed, owner, luckiness=0):
-        super().__init__(name, age, breed, owner)
-        self.luckiness = luckiness
-    
-    def squeak(self):
-        print(self.name + ": " + self.squeak)
-    
-    def willSurvive(self):
-        return 1 - random.random() <= self.luckiness
-    
-    def __del__(self):
-        print(self.name + " died")
+    def __str__(self):
+        return f"{self.make} {self.model} ({self.year}) - {self.range} km range, {self.efficiency} km/kWh efficiency"
 
 
-dog = Dog("Boxer", 3, "Bulldog", "Danylo")
-hamster = Hamster("Bobik", 1, "Chinese", "Danylo", 0.5)
-cat = Cat("Masik", 2, "Ragdoll", "Danylo", hamster)
 
-print(isinstance(dog, Cat)) # False
-print(isinstance(dog, Animal)) # True
-print(isinstance(dog, Dog)) # True
+dcar1 = Car("Honda", "Accord", 2022, "red")
+print(car1) # red 2022 Honda Accord
+car1.honk() # Beep beep!
 
-print(issubclass(Dog, Animal)) # True
-print(issubclass(Cat, Dog)) # False
+car2 = SportsCar("Ferrari", "F8", 2021, "yellow", 211)
+print(car2) # yellow 2021 Ferrari F8
+car2.accelerate() # The yellow Ferrari F8 is accelerating to 211 mph!
 
-cat.eat_hamster()
+car3 = ElectricCar("Tesla", "Model S", 2022, 500, 5)
+print(car3)
+car3.charge()
+car3.drive(300)
+print(car3)
 
-dog.bark()
-print(cat)
+print(isinstance(car2, ElectricCar)) # False
+print(isinstance(car2, Car)) # True
+print(isinstance(car2, SportsCar)) # True
+
+print(issubclass(ElectricCar, Car)) # True
+print(issubclass(ElectricCar, SportsCar)) # False

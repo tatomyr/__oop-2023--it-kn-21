@@ -1,45 +1,39 @@
-class Dog:
+class Book:
     amount = 0
-    woof = "Woof!"
 
-    def __init__(self, name, age, breed, owner):
-        self.name = name
-        self.age = age
-        self.breed = breed
-        self.owner = owner
-        Dog.amount += 1
+    def __init__(self, title, author, year, genre, pages):
+        self.title = title
+        self.author = author
+        self.year = year
+        self.genre = genre
+        self.pages = pages
+        Book.amount += 1
 
     def __str__(self):
-        return f"{self.name} is {self.age} years old, {self.breed} breed, owner is {self.owner}"
+        return f"{self.title} by {self.author}, published in {self.year}. Genre: {self.genre}. {self.pages} pages."
 
-    def bark(self):
-        print(self.woof)
+    def get_pages(self):
+        return self.pages
 
-    def get_older(self):
-        self.age += 1
+    def set_author(self, new_author):
+        self.author = new_author
 
-    def get_age(self):
-        return self.age
+    def set_genre(self, new_genre):
+        self.genre = new_genre
 
-    def change_owner(self, new_owner):
-        self.owner = new_owner
+book1 = Book("Harry Potter and the Philosopher's Stone", "J.K. Rowling", 1997, "Fantasy", 223)
+book2 = Book("To Kill a Mockingbird", "Harper Lee", 1960, "Fiction", 281)
+book3 = Book("The Lord of the Rings", "J.R.R. Tolkien", 1954, "Fantasy", 1178)
 
+# Друкуємо книгу book2
+print(book2)
 
-dog1 = Dog("Boxer", 3, "Bulldog", "Danylo")
-dog2 = Dog("Goldy", 5, "Golden Retriever", "Danylo")
-dog3 = Dog("Snowy", 2, "Husky", "Danylo")
+# Змінюємо автора book1
+book1.set_author("Joanne Rowling")
+print(book1)
 
-# Goldy гавкає
-dog2.bark()
+# Змінюємо жанр book3
+book3.set_genre("High fantasy")
+print(book3)
 
-# Виводимо вік Snowy та збільшуємо його на 1 рік
-age = dog3.get_age()
-print(age)
-dog3.get_older()
-print(dog3.get_age())
-
-dog1.change_owner("Danylo Yankovych")
-
-print(dog1)
-
-print(f"Кількість ініціалізованих собак: {Dog.amount}")
+print(f"Кількість ініціалізованих книг: {Book.amount}")
