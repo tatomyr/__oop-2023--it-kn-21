@@ -1,7 +1,9 @@
-mystring = "hello"
-myfloat = 10.0
-myint = 20
+# change this code
+mystring = None
+myfloat = None
+myint = None
 
+# testing code
 if mystring == "hello":
     print("String: %s" % mystring)
 if isinstance(myfloat, float) and myfloat == 10.0:

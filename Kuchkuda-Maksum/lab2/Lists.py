@@ -3,14 +3,8 @@ strings = []
 names = ["John", "Eric", "Jessica"]
 
 # write your code here
-second_name = names[1]
+second_name = None
 
-numbers.append(1)
-numbers.append(2)
-numbers.append(3)
-
-strings.append("hello")
-strings.append("world")
 
 # this code should write out the filled arrays and the second name in the names list (Eric).
 print(numbers)

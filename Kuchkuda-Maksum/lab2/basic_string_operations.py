@@ -1,4 +1,4 @@
-s = "Str fer a! what ome!"
+s = "Hey there! what should this string be?"
 # Length should be 20
 print("Length of s = %d" % len(s))
 
@@ -17,18 +17,3 @@ print("The last five characters are '%s'" % s[-5:]) # 5th-from-last to end
 
 # Convert everything to uppercase
 print("String in uppercase: %s" % s.upper())
-
-# Convert everything to lowercase
-print("String in lowercase: %s" % s.lower())
-
-# Check how a string starts
-if s.startswith("Str"):
-    print("String starts with 'Str'. Good!")
-
-# Check how a string ends
-if s.endswith("ome!"):
-    print("String ends with 'ome!'. Good!")
-
-# Split the string into three separate strings,
-# each containing only a word
-print("Split the words of the string: %s" % s.split(" "))
