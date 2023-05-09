@@ -3,7 +3,10 @@ phonebook = {
     "Jack" : 938377264,
     "Jill" : 947662781
 }  
+
 # your code goes here
+phonebook["Jake"] = 938273443  
+del phonebook["Jill"]  
 
 # testing code
 if "Jake" in phonebook:  
