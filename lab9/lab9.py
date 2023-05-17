@@ -15,21 +15,22 @@ class Employee:
     def apply_raise(self):
         self.pay = int(self.pay * self.raise_amt)
 
+    def __repr__(self):
+        return "Employee('{}', '{}', {})".format(self.first, self.last, self.pay)
 
-dev_1 = Employee('Corey', 'Schafer', 50000)
-dev_2 = Employee('Test', 'Employee', 60000)
+    def __str__(self):
+        return '{} - {}'.format(self.fullname(), self.email)
 
-print(dev_1.email)
-print(dev_2.email)
+    def __add__(self, other):
+        return self.pay + other.pay
 
-
-
-
-
-
-
+    def __len__(self):
+        return len(self.fullname())
 
 
-# print(dev_1.raise_amt)
-# dev_1.apply_raise()
-# print(dev_1.raise_amt)
+emp_1 = Employee('Corey', 'Schafer', 50000)
+emp_2 = Employee('Test', 'Employee', 60000)
+
+# print(emp_1 + emp_2)
+
+print(len(emp_1))
