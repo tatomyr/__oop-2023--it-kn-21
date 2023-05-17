@@ -17,4 +17,5 @@
 ## Зміст
 
 [Дмитров Ігор IT-21](./it21-igordmitrow/README.md)
+
 [Іванів Вадим IT-21](./it21-vadym-ivaniv/README.md)
