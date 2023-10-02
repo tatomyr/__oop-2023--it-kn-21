@@ -38,4 +38,16 @@ emp_2 = Employee('Test', 'Employee', 60000)
 import datetime
 my_date = datetime.date(2016, 7, 10)
 
+emp_1.appy_raise()
+emp_2.appy_raise()
+
+emp_str = "John-Doe-70000"
+emp_3 = Employee.from_string(emp_str)
+print(emp_3.first)  # Output: John
+print(emp_3.last)   # Output: Doe
+print(emp_3.pay)    # Output: 70000
+
+print(emp_1.pay)  
+print(emp_2.pay)
+
 print(Employee.is_workday(my_date))
