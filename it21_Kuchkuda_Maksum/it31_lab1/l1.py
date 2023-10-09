@@ -1,33 +1,28 @@
 import copy
 
-class Prototype:
-    def clone(self):
-        pass
-
-class ConcretePrototype1(Prototype):
-    def __init__(self, value):
-        self._value = value
+class Car:
+    def __init__(self, brand, model, color):
+        self.brand = brand
+        self.model = model
+        self.color = color
 
     def clone(self):
         return copy.deepcopy(self)
 
     def __str__(self):
-        return f"ConcretePrototype1 with value: {self._value}"
+        return f"{self.color} {self.brand} {self.model}"
 
-class ConcretePrototype2(Prototype):
-    def __init__(self, name):
-        self._name = name
+# Створення прототипу автомобіля
+prototype_car = Car("Toyota", "Camry", "Silver")
 
-    def clone(self):
-        return copy.deepcopy(self)
+# Клонування прототипу для створення нового автомобіля
+new_car1 = prototype_car.clone()
+new_car1.color = "Red"
 
-    def __str__(self):
-        return f"ConcretePrototype2 with name: {self._name}"
+new_car2 = prototype_car.clone()
+new_car2.color = "Blue"
 
-prototype1 = ConcretePrototype1(10)
-clone1 = prototype1.clone()
-print(clone1)  
-
-prototype2 = ConcretePrototype2("Prototype2")
-clone2 = prototype2.clone()
-print(clone2)  
+# Виведення інформації про автомобілі
+print("Prototype Car:", prototype_car)
+print("New Car 1:", new_car1)
+print("New Car 2:", new_car2)
