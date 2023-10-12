@@ -1,38 +1,37 @@
 from abc import ABC, abstractmethod
 
-class Product(ABC):
+class Team(ABC):
     @abstractmethod
-    def create(self):
+    def play(self):
         pass
 
-class ConcreteProductA(Product):
-    def create(self):
-        print("Product A created.") 
+class Barcelona(Team):
+    def play(self):
+        print("FC Barcelona is playing.")
 
-class ConcreteProductB(Product):
-    def create(self):
-        print("Product B created.")
+class RealMadrid(Team):
+    def play(self):
+        print("Real Madrid is playing.")
 
-class Creator(ABC):
+class FootballFactory(ABC):
     @abstractmethod
-    def factory_method(self):
+    def create_team(self):
         pass
 
-    def create_product(self):
-        product = self.factory_method()
-        product.create()
-        return product
+    def organize_game(self):
+        team = self.create_team()
+        team.play()
 
-class CreatorA(Creator):
-    def factory_method(self):
-        return ConcreteProductA()
+class BarcelonaFactory(FootballFactory):
+    def create_team(self):
+        return Barcelona()
 
-class CreatorB(Creator):
-    def factory_method(self):
-        return ConcreteProductB()
+class RealMadridFactory(FootballFactory):
+    def create_team(self):
+        return RealMadrid()
 
-creator_a = CreatorA()
-product_a = creator_a.create_product()
+barcelona_factory = BarcelonaFactory()
+barcelona_game = barcelona_factory.organize_game()
 
-creator_b = CreatorB()
-product_b = creator_b.create_product()
+madrid_factory = RealMadridFactory()
+madrid_game = madrid_factory.organize_game()
