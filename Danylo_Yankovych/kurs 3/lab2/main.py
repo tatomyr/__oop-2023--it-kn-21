@@ -1,53 +1,44 @@
-// Класи з сумісними інтерфейсами: КруглийОтвір та
-// КруглийКілочок.
-class RoundHole is
-    constructor RoundHole(radius) { ... }
+# Клас, що представляє інтерфейс для автомобілів.
+class Car:
+    def start(self):
+        pass
 
-    method getRadius() is
-        // Повернути радіус отвору.
+    def stop(self):
+        pass
 
-    method fits(peg: RoundPeg) is
-        return this.getRadius() >= peg.getRadius()
+# Клас, що представляє електричний автомобіль.
+class ElectricCar(Car):
+    def start(self):
+        print("Електричний автомобіль запущений.")
 
-class RoundPeg is
-    constructor RoundPeg(radius) { ... }
+    def stop(self):
+        print("Електричний автомобіль зупинений.")
 
-    method getRadius() is
-        // Повернути радіус круглого кілочка.
+# Клас, що представляє двигун з бензиновим пальним.
+class GasolineEngine:
+    def ignite(self):
+        print("Двигун з бензиновим пальним запущений.")
 
+# Адаптер для автомобіля з бензиновим двигуном.
+class GasolineCarAdapter(Car):
+    def __init__(self, engine):
+        self.engine = engine
 
-// Застарілий несумісний клас: КвадратнийКілочок.
-class SquarePeg is
-    constructor SquarePeg(width) { ... }
+    def start(self):
+        self.engine.ignite()
 
-    method getWidth() is
-        // Повернути ширину квадратного кілочка.
+    def stop(self):
+        print("Автомобіль з бензиновим двигуном зупинений.")
 
+# Клієнтський код
+electric_car = ElectricCar()
+electric_car.start()
+electric_car.stop()
 
-// Адаптер дозволяє використовувати квадратні кілочки й круглі
-// отвори разом.
-class SquarePegAdapter extends RoundPeg is
-    private field peg: SquarePeg
+gasoline_engine = GasolineEngine()
+# gasoline_engine.start()  # Помилка, оскільки GasolineEngine не реалізує інтерфейс Car.
 
-    constructor SquarePegAdapter(peg: SquarePeg) is
-        this.peg = peg
-
-    method getRadius() is
-        // Обчислити половину діагоналі квадратного кілочка за
-        // теоремою Піфагора.
-        return peg.getWidth() * Math.sqrt(2) / 2
-
-
-// Десь у клієнтському програмному коді.
-hole = new RoundHole(5)
-rpeg = new RoundPeg(5)
-hole.fits(rpeg) // TRUE
-
-small_sqpeg = new SquarePeg(5)
-large_sqpeg = new SquarePeg(10)
-hole.fits(small_sqpeg) // Помилка компіляції, несумісні типи.
-
-small_sqpeg_adapter = new SquarePegAdapter(small_sqpeg)
-large_sqpeg_adapter = new SquarePegAdapter(large_sqpeg)
-hole.fits(small_sqpeg_adapter) // TRUE
-hole.fits(large_sqpeg_adapter) // FALSE
+# Використання адаптера для автомобіля з бензиновим двигуном.
+gasoline_car_adapter = GasolineCarAdapter(gasoline_engine)
+gasoline_car_adapter.start()
+gasoline_car_adapter.stop()
