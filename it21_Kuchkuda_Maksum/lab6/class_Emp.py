@@ -1,4 +1,4 @@
-class Employee:
+class Employee: 
 
     def __init__(self, first, last, pay):
         self.first = first

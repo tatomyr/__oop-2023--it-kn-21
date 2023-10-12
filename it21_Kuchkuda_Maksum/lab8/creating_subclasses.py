@@ -52,3 +52,4 @@ mgr_1 = Manager('Sue', 'Smith', 90000, '[dev_1]')
 
 print(issubclass(Manager, Developer))
 
+
