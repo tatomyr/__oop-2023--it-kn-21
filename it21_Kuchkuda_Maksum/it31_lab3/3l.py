@@ -1,20 +1,32 @@
-class MyIterator:
-    def __init__(self, max_count):
-        self.max_count = max_count
-        self.current = 1
+class Car:
+    def __init__(self, brand, model):
+        self.brand = brand
+        self.model = model
 
-    def __iter__(self):
-        return self
+# Створення класу, який представляє список автомобілів
+class CarList:
+    def __init__(self):
+        self.cars = []
 
-    def __next__(self):
-        if self.current <= self.max_count:
-            value = self.current
-            self.current += 1
-            return value
-        else:
-            raise StopIteration
+    def add_car(self, car):
+        self.cars.append(car)
 
-iterator = MyIterator(5)  
+    def iterate_cars(self):
+        for car in self.cars:
+            yield car
 
-for item in iterator:
-    print(item)
+# Створення об'єктів автомобілів
+car1 = Car("Toyota", "Camry")
+car2 = Car("Honda", "Civic")
+car3 = Car("Ford", "Focus")
+
+# Створення колекції автомобілів
+car_list = CarList()
+car_list.add_car(car1)
+car_list.add_car(car2)
+car_list.add_car(car3)
+
+# Використання ітератора для виведення автомобілів
+print("List of cars:")
+for car in car_list.iterate_cars():
+    print(f"Brand: {car.brand}, Model: {car.model}")

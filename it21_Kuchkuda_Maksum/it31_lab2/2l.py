@@ -1,27 +1,26 @@
 class Car:
-    def __init__(self):
-        self.make = None
-        self.model = None
-        self.color = None
+    def __init__(self, make, model, year, engine_capacity, fuel_type):
+        self.make = make
+        self.model = model
+        self.year = year
+        self.engine_capacity = engine_capacity
+        self.fuel_type = fuel_type
 
-    def __str__(self):
-        return f"Car: {self.make}, Model: {self.model}, Color: {self.color}"
+    def start(self):
+        print(f"The {self.make} {self.model} has started.")
+
+    def stop(self):
+        print(f"The {self.make} {self.model} has stopped.")
+
+    def display_info(self):
+        print(f"Car: {self.make} {self.model} ({self.year})")
+        print(f"Engine Capacity: {self.engine_capacity}L")
+        print(f"Fuel Type: {self.fuel_type}")
 
 
-class CarBuilder:
-    def __init__(self, make, model):
-        self.car = Car()
-        self.car.make = make
-        self.car.model = model
+# Приклад використання
+my_car = Car(make="Toyota", model="Corolla", year=2020, engine_capacity=1.8, fuel_type="Petrol")
 
-    def set_color(self, color):
-        self.car.color = color
-
-    def build(self):
-        return self.car
-
-car_builder = CarBuilder("Toyota", "Corolla")
-car_builder.set_color("Blue")
-car = car_builder.build()
-
-print(car)  
+my_car.start()
+my_car.display_info()
+my_car.stop()
