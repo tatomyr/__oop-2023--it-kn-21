@@ -1,0 +1,161 @@
+openapi: 3.0.0
+
+info:
+  title: Music Downloader API
+  description: API for downloading and listening to music
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:5001
+
+security:
+  - apiKey: []
+
+paths:
+
+  /getMusicData:  
+    get:
+      operationId: getMusicMetadata
+      security:
+        - apiKey: []
+      summary: Get metadata for a music track
+      parameters:
+        - name: pos
+          in: query
+          description: The position of the track
+          required: false
+          schema:
+            type: integer
+            default: 0
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:    
+              schema:
+                type: object
+                properties:
+                  title: 
+                    type: string
+                  artist:  
+                    type: string
+                  album:
+                    type: string
+                  year:
+                    type: string
+                  genre:
+                    type: string
+                  cover:
+                    type: string
+                  file:
+                    type: string
+                  max:
+                    type: integer
+                    
+  /getAll:
+    get:
+      operationId: getAllMusicMetadata
+      security:
+        - apiKey: []
+      summary: Get metadata for all tracks
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    title:
+                      type: string
+                    artist:
+                      type: string
+                    album:
+                      type: string  
+                    year:
+                      type: string
+                    genre:
+                      type: string
+                    cover:
+                      type: string
+                    file:
+                      type: string
+                    max:
+                      type: integer
+                        
+  /search:
+    get:
+      operationId: searchMusic
+      security:
+        - apiKey: []
+      summary: Search for music
+      parameters:
+       - name: query
+         in: query
+         description: Search query
+         required: true
+         schema:
+           type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    id:
+                      type: integer
+                    title:
+                      type: string
+                    artist:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                            
+  /download:
+    post:
+      operationId: downloadMusic
+      security:
+        - apiKey: [] 
+      summary: Download a music track
+      parameters:
+       - name: link
+         in: query
+         description: The track ID to download
+         required: true
+         schema:
+           type: integer
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: boolean
+                
+  /{path}:
+    get:
+      operationId: getSongFile
+      security:
+        - apiKey: []
+      summary: Get a song file
+      parameters:
+        - name: path
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        200:
+          description: Success
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
