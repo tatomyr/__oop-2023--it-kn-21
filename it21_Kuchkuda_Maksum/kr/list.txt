@@ -6,8 +6,5 @@ Anna Sydorenko,29,46000,Planting Worker,666-777-8888
 Oleg Semenenko,37,51000,Machine Operator,999-000-1111
 Victoria Bilous,26,44000,Accountant,777-888-9999
 Yuriy Melnyk,41,59000,Forester,222-333-4444
-Sophia Kravchenko,31,53000,Gardener,555-111-7777
-Sophia Kravchenko,31,53000,Gardener,555-111-7777
-Sophia Kravchenko,31,53000,Gardener,555-111-7777
-Oleg Semenenko,37,51000,Machine Operator,999-000-1111
-1,1,1,1,1
+Ivan Petrov,45,65000,Manager,123-456-7890
+Olga Sidorova,38,60000,Director,321-654-0987
