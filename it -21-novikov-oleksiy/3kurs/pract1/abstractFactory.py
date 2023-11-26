@@ -1,85 +1,47 @@
-class Window:
-    __toolkit = ""  # Змінна для збереження назви інструментарію
-    __purpose = ""  # Змінна для збереження призначення вікна
+from abc import ABC, abstractmethod
 
-    def __init__(self, toolkit, purpose):
-        self.__toolkit = toolkit
-        self.__purpose = purpose
+# Абстрактні класи для виробів
+class Transport(ABC):
+    @abstractmethod
+    def transport(self):
+        pass
 
-    def getToolkit(self):
-        return self.__toolkit
+class Car(Transport):
+    def transport(self):
+        return "Автомобіль перевозить пасажирів"
 
-    def getType(self):
-        return self.__purpose
+class Plane(Transport):
+    def transport(self):
+        return "Літак перевозить пасажирів по повітрю"
 
-class GtkToolboxWindow(Window):
-    def __init__(self):
-        Window.__init__(self, "Вікно інструментів")
+# Абстрактна фабрика
+class TransportFactory(ABC):
+    @abstractmethod
+    def create_transport(self) -> Transport:
+        pass
 
-class GtkLayersWindow(Window):
-    def __init__(self):
-        Window.__init__(self,  "Вікно шарів")
+# Конкретні Фабрики для видів транспорту
+class CarFactory(TransportFactory):
+    def create_transport(self) -> Transport:
+        return Car()
 
-class GtkMainWindow(Window):
-    def __init__(self):
-        Window.__init__(self,  "Головне вікно")
+class PlaneFactory(TransportFactory):
+    def create_transport(self) -> Transport:
+        return Plane()
+
+# Клієнтський
+def use_factory(factory: TransportFactory):
+    transport = factory.create_transport()
+    print(transport.transport())
+
+# Використання фабрик для створення транспорту
+car_factory = CarFactory()
+use_factory(car_factory)
+
+plane_factory = PlaneFactory()
+use_factory(plane_factory)
 
 
-class QtToolboxWindow(Window):
-    def __init__(self):
-        Window.__init__(self,  "Вікно інструментів")
 
-class QtLayersWindow(Window):
-    def __init__(self):
-        Window.__init__(self, "Вікно шарів")
 
-class QtMainWindow(Window):
-    def __init__(self):
-        Window.__init__(self,  "Головне вікно")
-
-# Абстрактний клас фабрики
-class UIFactory:
-    def getToolboxWindow(self): pass
-    def getLayersWindow(self): pass
-    def getMainWindow(self): pass
-
-class GtkUIFactory(UIFactory):
-    def getToolboxWindow(self):
-        return GtkToolboxWindow()
-
-    def getLayersWindow(self):
-        return GtkLayersWindow()
-
-    def getMainWindow(self):
-        return GtkMainWindow()
-
-class QtUIFactory(UIFactory):
-    def getToolboxWindow(self):
-        return QtToolboxWindow()
-
-    def getLayersWindow(self):
-        return QtLayersWindow()
-
-    def getMainWindow(self):
-        return QtMainWindow()
-
-if __name__ == "__main__":
-    gnome = True  # Перевірка, чи використовуємо оточення GNOME
-    kde   = not gnome  # Перевірка, чи використовуємо оточення KDE
-
-    # Яке оточення доступно?
-    if gnome:
-        ui = GtkUIFactory()
-    elif kde:
-        ui = QtUIFactory()
-
-    # Побудова користувацького інтерфейсу
-    toolbox = ui.getToolboxWindow()
-    layers  = ui.getLayersWindow()
-    main    = ui.getMainWindow()
-
-    # Виведення інформації про отримані вікна
-    print(toolbox.getToolkit(), toolbox.getType())
-    print(layers.getToolkit(), layers.getType())
-    print(main.getToolkit(), main.getType())
 
