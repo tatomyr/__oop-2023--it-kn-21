@@ -23,7 +23,7 @@
 1. Склоновуємо головний [репозиторій](https://github.com/tatomyr/__oop-2023--it-kn-21) за допомогою команди `git clone https://github.com/tatomyr/__oop-2023--it-kn-21.git`.
 2. Створюємо власну гілку з назвою
 3. Створюємо [пайтон програму](./lab1.py) з базовим класом
-4. Пушимо наші зміни на **Github** за допомогою команди `git push origin it21-igor-dmitrow`
+4. Пушимо наші зміни на **Github** за допомогою команди `git push origin it31-bratashuk-volodymyr`
 
 ### Висновок
 
