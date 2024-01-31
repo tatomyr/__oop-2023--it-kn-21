@@ -1,0 +1,66 @@
+:root {
+  --yellow: #feb60a;
+  --red: #ff0062;
+  --blue: #00dbf9;
+  --violet: #da00f7;
+}
+
+.loader {
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background-color: #fff;
+}
+
+div.container-loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-loader > .point {
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  margin: 7px;
+  background-image: linear-gradient(145deg, rgba(255, 255, 255, 0.5) 0%, rgba(0, 0, 0, 0) 100%);
+  animation: bounce 1.5s 0.5s linear infinite;
+}
+
+.yellow {
+  background-color: var(--yellow);
+}
+
+.red {
+  background-color: var(--red);
+  animation-delay: 0.1s;
+}
+
+.blue {
+  background-color: var(--blue);
+  animation-delay: 0.2s;
+}
+
+.violet {
+  background-color: var(--violet);
+  animation-delay: 0.3s;
+}
+
+@keyframes bounce {
+  0%,
+  50%,
+  100% {
+    transform: scale(1);
+    filter: blur(0px);
+  }
+  25% {
+    transform: scale(0.6);
+    filter: blur(0px);
+  }
+  75% {
+    filter: blur(0px);
+    transform: scale(1.4);
+  }
+}
